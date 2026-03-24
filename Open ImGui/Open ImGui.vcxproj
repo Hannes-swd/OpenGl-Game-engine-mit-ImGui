@@ -102,7 +102,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\hanne\OneDrive\Dokumente\Visual Studio 2022\Librarys\glfw-3.4.bin.WIN64\include;C:\Users\hanne\source\repos\Open gl\Open gl\include\glad\include;C:\Users\hanne\source\repos\Open ImGui\Open ImGui\include;C:\Users\hanne\source\repos\Open ImGui\Open ImGui\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\hanne\OneDrive\Dokumente\Visual Studio 2022\Librarys\glfw-3.4.bin.WIN64\include;C:\Users\hanne\source\repos\Open ImGui\Open ImGui\imgui\backends;C:\Users\hanne\source\repos\Open ImGui\Open ImGui\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -119,7 +119,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\hanne\OneDrive\Dokumente\Visual Studio 2022\Librarys\glfw-3.4.bin.WIN64\include;C:\Users\hanne\source\repos\Open gl\Open gl\include\glad\include;C:\Users\hanne\source\repos\Open ImGui\Open ImGui\include;C:\Users\hanne\source\repos\Open ImGui\Open ImGui\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\hanne\OneDrive\Dokumente\Visual Studio 2022\Librarys\glfw-3.4.bin.WIN64\include;C:\Users\hanne\source\repos\Open ImGui\Open ImGui\imgui\backends;C:\Users\hanne\source\repos\Open ImGui\Open ImGui\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -129,14 +129,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="imgui\backends\imgui_impl_glfw.cpp" />
-    <ClCompile Include="imgui\backends\imgui_impl_opengl3.cpp" />
-    <ClCompile Include="imgui\imgui.cpp" />
-    <ClCompile Include="imgui\imgui_demo.cpp" />
-    <ClCompile Include="imgui\imgui_draw.cpp" />
-    <ClCompile Include="imgui\imgui_tables.cpp" />
-    <ClCompile Include="imgui\imgui_widgets.cpp" />
-    <ClCompile Include="include\glad\src\glad.c" />
+    <ClCompile Include="imgui.cpp" />
+    <ClCompile Include="imgui_demo.cpp" />
+    <ClCompile Include="imgui_draw.cpp" />
+    <ClCompile Include="imgui_impl_glfw.cpp" />
+    <ClCompile Include="imgui_impl_opengl3.cpp" />
+    <ClCompile Include="imgui_tables.cpp" />
+    <ClCompile Include="imgui_widgets.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
