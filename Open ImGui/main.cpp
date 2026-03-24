@@ -2,6 +2,7 @@
 #include "imgui.h"
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
+using namespace ImGui;
 
 int main() {
     if (!glfwInit()) return 1;
@@ -17,18 +18,18 @@ int main() {
     glfwSwapInterval(1);
 
     IMGUI_CHECKVERSION();
-    ImGui::CreateContext();
-    ImGuiIO& io = ImGui::GetIO();
+    CreateContext();
+    ImGuiIO& io = GetIO();
 
     // DOCKING AKTIVIEREN!
     io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
     io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
     io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
 
-    ImGui::StyleColorsDark();
+    StyleColorsDark();
 
     if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable) {
-        ImGuiStyle& style = ImGui::GetStyle();
+        ImGuiStyle& style = GetStyle();
         style.WindowRounding = 0.0f;
         style.Colors[ImGuiCol_WindowBg].w = 1.0f;
     }
@@ -53,55 +54,55 @@ int main() {
     while (!glfwWindowShouldClose(window)) {
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplGlfw_NewFrame();
-        ImGui::NewFrame();
+        NewFrame();
 
         // DOCKING SPACE über das ganze Fenster
-        ImGui::DockSpaceOverViewport();
+        DockSpaceOverViewport();
 
-        if (show_demo) ImGui::ShowDemoWindow(&show_demo);
+        if (show_demo) ShowDemoWindow(&show_demo);
 
         if (show_tools) {
-            ImGui::Begin("Tools", &show_tools);
-            ImGui::SliderFloat3("Position", positions, -10.0f, 10.0f);
-            ImGui::SliderFloat("Rotation", &rotation, -180.0f, 180.0f);
-            ImGui::SliderFloat("Wert", &slider_value, 0.0f, 1.0f);
-            ImGui::Checkbox("Option", &checkbox_value);
-            ImGui::InputText("Text", text_input, sizeof(text_input));
-            ImGui::Combo("Farbe", &color_choice, colors, IM_ARRAYSIZE(colors));
-            ImGui::End();
+            Begin("Tools", &show_tools);
+            SliderFloat3("Position", positions, -10.0f, 10.0f);
+            SliderFloat("Rotation", &rotation, -180.0f, 180.0f);
+            SliderFloat("Wert", &slider_value, 0.0f, 1.0f);
+            Checkbox("Option", &checkbox_value);
+            InputText("Text", text_input, sizeof(text_input));
+            Combo("Farbe", &color_choice, colors, IM_ARRAYSIZE(colors));
+            End();
         }
 
         if (show_settings) {
-            ImGui::Begin("Settings", &show_settings);
-            ImGui::Checkbox("Demo Fenster", &show_demo);
-            ImGui::Checkbox("Tools", &show_tools);
-            ImGui::Checkbox("Scene", &show_scene);
-            ImGui::Text("FPS: %.1f", io.Framerate);
-            ImGui::End();
+            Begin("Settings", &show_settings);
+            Checkbox("Demo Fenster", &show_demo);
+            Checkbox("Tools", &show_tools);
+            Checkbox("Scene", &show_scene);
+            Text("FPS: %.1f", io.Framerate);
+            End();
         }
 
         if (show_scene) {
-            ImGui::Begin("Scene", &show_scene);
-            ImGui::Text("Position: (%.2f, %.2f, %.2f)", positions[0], positions[1], positions[2]);
-            ImGui::Text("Rotation: %.2f°", rotation);
-            ImGui::Text("Text: %s", text_input);
-            ImGui::Text("Farbe: %s", colors[color_choice]);
-            ImGui::End();
+            Begin("Scene", &show_scene);
+            Text("Position: (%.2f, %.2f, %.2f)", positions[0], positions[1], positions[2]);
+            Text("Rotation: %.2f°", rotation);
+            Text("Text: %s", text_input);
+            Text("Farbe: %s", colors[color_choice]);
+            End();
         }
 
-        ImGui::Render();
+        Render();
 
         int w, h;
         glfwGetFramebufferSize(window, &w, &h);
         glViewport(0, 0, w, h);
         glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
-        ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+        ImGui_ImplOpenGL3_RenderDrawData(GetDrawData());
 
         if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable) {
             GLFWwindow* backup = glfwGetCurrentContext();
-            ImGui::UpdatePlatformWindows();
-            ImGui::RenderPlatformWindowsDefault();
+            UpdatePlatformWindows();
+            RenderPlatformWindowsDefault();
             glfwMakeContextCurrent(backup);
         }
 
@@ -111,7 +112,7 @@ int main() {
 
     ImGui_ImplOpenGL3_Shutdown();
     ImGui_ImplGlfw_Shutdown();
-    ImGui::DestroyContext();
+    DestroyContext();
     glfwDestroyWindow(window);
     glfwTerminate();
 
